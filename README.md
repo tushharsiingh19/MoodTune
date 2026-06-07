@@ -8,6 +8,11 @@
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python)
 
 ---
+## 👨‍💻 Author
+
+**Tushar Singh**  
+B.Tech Computer Science & Engineering (2027)  
+National Institute of Technology Kurukshetra (NIT Kurukshetra)
 
 ## ✨ Features
 
@@ -221,8 +226,4 @@ npm run build
 1. Create a free project at [neon.tech](https://neon.tech)
 2. Copy the connection string to `DATABASE_URL`
 
----
 
-## 📄 License
-
-MIT — free to use, modify, and distribute.
