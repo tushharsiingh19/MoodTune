@@ -1,13 +1,16 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { FaMusic, FaHeart, FaHistory, FaSignOutAlt, FaUser, FaCompactDisc } from 'react-icons/fa'
+import { FaMusic, FaHeart, FaHistory, FaSignOutAlt, FaUser } from 'react-icons/fa'
 import { useAuth } from '../../context/AuthContext'
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuth()
   const navigate = useNavigate()
 
-  const handleLogout = () => { logout(); navigate('/') }
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
 
   const navLinkClass = ({ isActive }) =>
     `flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
@@ -24,7 +27,6 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-8 h-8 bg-spotify-green rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -37,11 +39,11 @@ export default function Navbar() {
 
           {/* Nav links */}
           <div className="flex items-center gap-1">
-            <NavLink to="/" end className={navLinkClass}>Home</NavLink>
-            <NavLink to="/recommend" className={navLinkClass}>Discover</NavLink>
-            <NavLink to="/catalog" className={navLinkClass}>
-              <FaCompactDisc className="text-xs" />
-              <span className="hidden sm:block">Catalog</span>
+            <NavLink to="/" end className={navLinkClass}>
+              Home
+            </NavLink>
+            <NavLink to="/recommend" className={navLinkClass}>
+              Discover
             </NavLink>
             {isAuthenticated && (
               <>
@@ -57,7 +59,7 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Auth */}
+          {/* Auth actions */}
           <div className="flex items-center gap-3">
             {isAuthenticated ? (
               <div className="flex items-center gap-3">
@@ -77,8 +79,12 @@ export default function Navbar() {
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <Link to="/login" className="btn-secondary !py-2 !px-4 text-sm">Log In</Link>
-                <Link to="/register" className="btn-primary !py-2 !px-4 text-sm">Sign Up</Link>
+                <Link to="/login" className="btn-secondary !py-2 !px-4 text-sm">
+                  Log In
+                </Link>
+                <Link to="/register" className="btn-primary !py-2 !px-4 text-sm">
+                  Sign Up
+                </Link>
               </div>
             )}
           </div>

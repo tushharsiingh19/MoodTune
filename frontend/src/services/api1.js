@@ -67,10 +67,3 @@ export const addFavorite = (song) =>
 
 export const removeFavorite = (id) =>
   api.delete(`/favorites/${id}`)
-
-// ── Song Catalog (new) ────────────────────────────────────────
-export const getSongsByMood = (mood, limit = 20, skip = 0) =>
-  api.get(`/songs/${mood}`, { params: { limit, skip } }).then(r => r.data)
-
-export const getCatalogStats = () =>
-  api.get('/catalog/stats').then(r => r.data)

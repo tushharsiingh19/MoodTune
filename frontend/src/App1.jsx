@@ -5,7 +5,6 @@ import HomePage from './pages/HomePage'
 import RecommendPage from './pages/RecommendPage'
 import HistoryPage from './pages/HistoryPage'
 import FavoritesPage from './pages/FavoritesPage'
-import CatalogPage from './pages/CatalogPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import LoadingSpinner from './components/ui/LoadingSpinner'
@@ -22,7 +21,6 @@ function AppRoutes() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="recommend" element={<RecommendPage />} />
-        <Route path="catalog" element={<CatalogPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="history" element={

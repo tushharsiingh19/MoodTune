@@ -197,14 +197,3 @@ def add_song(
     db.commit()
     db.refresh(song)
     return {"message": "Song added", "id": song.id, "mood": song.mood}
-
-
-@router.get("/youtube/test")
-async def test_youtube():
-    """
-    Diagnostic endpoint — call this to check if YouTube API is working.
-    GET /api/youtube/test
-
-    Returns status: "ok" or "error" with a fix message.
-    """
-    return await youtube_service.test_connection()

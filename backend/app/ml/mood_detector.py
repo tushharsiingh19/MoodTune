@@ -200,15 +200,15 @@ class MoodDetector:
         confidence = max(0.45, min(confidence + 0.35, 0.95))
         return best_mood, round(confidence, 2)
 
-    def predict(self, text: str) -> Tuple[str, float]:
-        """
-        Predict mood from text.
-        Uses ML model if available, otherwise falls back to keyword matching.
-
-        Returns:
-            Tuple of (mood: str, confidence: float)
-        """
-        if self.model and self.vectorizer:
+    def predict(self, text: str):
+     try:
+        from app.ml.transformer_detector import TransformerMoodDetector
+        t = TransformerMoodDetector()
+        return t.predict(text)
+     except Exception:
+        pass  # fall back to TF-IDF model
+    
+     if self.model and self.vectorizer:
             try:
                 processed = self.preprocess(text)
                 vector = self.vectorizer.transform([processed])
@@ -219,7 +219,9 @@ class MoodDetector:
             except Exception as e:
                 logger.error(f"ML prediction failed: {e}. Falling back to keyword detection.")
 
-        return self._keyword_based_detection(text)
+     return self._keyword_based_detection(text)
+    
+        # ... existing TF-IDF logic ...
 
     def get_mood_info(self, mood: str, confidence: float) -> dict:
         """Get full mood metadata including emoji, description, and color"""
