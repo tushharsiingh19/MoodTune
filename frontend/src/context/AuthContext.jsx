@@ -5,17 +5,22 @@ import toast from 'react-hot-toast'
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null)
-  const [token, setToken] = useState(() => localStorage.getItem('mt_token'))
+  const [user, setUser]       = useState(null)
+  const [token, setToken]     = useState(() => localStorage.getItem('mt_token'))
   const [loading, setLoading] = useState(true)
 
-  // Fetch current user when token exists
+  // Verify token on mount
   useEffect(() => {
     if (token) {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`
       api.get('/auth/me')
         .then(res => setUser(res.data))
-        .catch(() => logout())
+        .catch(() => {
+          // Token invalid or expired — clear it
+          localStorage.removeItem('mt_token')
+          delete api.defaults.headers.common['Authorization']
+          setToken(null)
+        })
         .finally(() => setLoading(false))
     } else {
       setLoading(false)
@@ -51,7 +56,15 @@ export function AuthProvider({ children }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, register, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{
+      user,
+      token,
+      loading,
+      login,
+      register,
+      logout,
+      isAuthenticated: !!user
+    }}>
       {children}
     </AuthContext.Provider>
   )
