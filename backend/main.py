@@ -31,6 +31,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://moodtune-web.onrender.com"
         "http://localhost:5173",
         "http://localhost:3000",
         "https://*.vercel.app",
