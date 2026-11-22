@@ -1,0 +1,32 @@
+{
+  "model_name": "LinearSVC_calibrated",
+  "cv_accuracy": 0.3434,
+  "test_accuracy": 0.3354,
+  "train_samples": 12976,
+  "test_samples": 3244,
+  "vocab_size": 15000,
+  "moods": [
+    "angry",
+    "happy",
+    "motivational",
+    "party",
+    "relaxed",
+    "romantic",
+    "sad",
+    "study"
+  ],
+  "all_results": {
+    "LogisticRegression": {
+      "mean": 0.3206,
+      "std": 0.0032
+    },
+    "LinearSVC_calibrated": {
+      "mean": 0.3434,
+      "std": 0.0073
+    },
+    "SGDClassifier": {
+      "mean": 0.3377,
+      "std": 0.0073
+    }
+  }
+}

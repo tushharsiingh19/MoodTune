@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-spotify-dark text-white font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-spotify-black;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-spotify-hover rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-spotify-light;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+
+  /* Spotify-style gradient button */
+  .btn-primary {
+    @apply bg-spotify-green text-black font-bold py-3 px-8 rounded-full
+           hover:bg-green-400 active:scale-95 transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-spotify-green focus:ring-offset-2
+           focus:ring-offset-spotify-dark disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply border border-white/30 text-white font-semibold py-3 px-8 rounded-full
+           hover:border-white hover:bg-white/10 active:scale-95 transition-all duration-200
+           focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Song card */
+  .song-card {
+    @apply bg-spotify-card rounded-xl p-4 hover:bg-spotify-hover
+           transition-all duration-300 cursor-pointer relative overflow-hidden;
+  }
+
+  /* Input field */
+  .input-field {
+    @apply w-full bg-spotify-hover border border-white/10 text-white placeholder-spotify-light
+           rounded-xl px-4 py-3 focus:outline-none focus:border-spotify-green focus:ring-1
+           focus:ring-spotify-green transition-all duration-200;
+  }
+
+  /* Mood badge */
+  .mood-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold;
+  }
+
+  /* Animated gradient background */
+  .gradient-bg {
+    background: radial-gradient(ellipse at top left, #1DB95420 0%, transparent 60%),
+                radial-gradient(ellipse at bottom right, #9B59B620 0%, transparent 60%),
+                #121212;
+  }
+
+  /* Confidence bar */
+  .confidence-bar {
+    @apply h-2 rounded-full bg-spotify-hover overflow-hidden;
+  }
+  .confidence-fill {
+    @apply h-full rounded-full bg-spotify-green transition-all duration-1000;
+  }
+}
+
+/* Page transition */
+.page-enter {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Waveform animation */
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+.wave-bar {
+  animation: wave 1.2s ease-in-out infinite;
+}
+.wave-bar:nth-child(2) { animation-delay: 0.15s; }
+.wave-bar:nth-child(3) { animation-delay: 0.3s; }
+.wave-bar:nth-child(4) { animation-delay: 0.45s; }
+.wave-bar:nth-child(5) { animation-delay: 0.6s; }
